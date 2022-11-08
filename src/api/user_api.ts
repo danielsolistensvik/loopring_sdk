@@ -37,13 +37,10 @@ export class UserAPI extends BaseAPI {
     eddsaKey: string
   ): Promise<{ raw_data: R; apiKey: string }> {
     const dataToSig: Map<string, any> = new Map();
-
     dataToSig.set("accountId", request.accountId);
-
     const reqParams: loopring_defs.ReqParams = {
       url: LOOPRING_URLs.API_KEY_ACTION,
       queryParams: request,
-      bodyParams: request,
       method: ReqMethod.GET,
       sigFlag: SIG_FLAG.EDDSA_SIG,
       sigObj: {
@@ -1604,7 +1601,7 @@ export class UserAPI extends BaseAPI {
   }
 
   /*
-   * Submit NFTAction 55544555555555555555555545555 request
+   * Submit NFTAction  request
    */
   public async submitNFTMint<T extends loopring_defs.TX_HASH_API>(
     req: loopring_defs.OriginNFTMINTRequestV3WithPatch,
