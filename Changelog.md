@@ -1,6 +1,20 @@
 # CHANGELOG
 
 ## JS SDK Version ChangeLog
+
+#### v3.4.0-alpha
+    Package dependency update
+     1) "@ethereumjs/common": "^3.2.0",
+     2) "@ethereumjs/tx": "^4.2.0",
+     3) "@ethersproject/bignumber": "5.7.0",
+     4) "@metamask/eth-sig-util": "^5.1.0",
+     5) "axios": "^1.4.0",
+     6) "bignumber.js": "^9.1.1",
+     7) "bn.js": "^5.2.1",
+     8) "ethereumjs-util": "^7.1.5",
+     9) "ethers": "^5.7.2",
+
+
 #### v3.3.16 
     1）Change Ecrecove function
     2）Stop limit
