@@ -1,6 +1,8 @@
 import * as ethUtil from "ethereumjs-util";
 import BN from "bn.js";
 import BigNumber from "bignumber.js";
+import { Buffer } from "buffer";
+
 import {
   AmmPoolInfoV3,
   LOOPRING_URLs,
@@ -41,6 +43,8 @@ export function addHexPrefix(input: any) {
 export function toBuffer(mixed: any) {
   if (mixed instanceof Buffer) {
     return mixed;
+  } else if (typeof mixed === "string" && !mixed.startsWith("0x")) {
+    return Buffer.from(mixed);
   } else {
     return ethUtil.toBuffer(mixed);
   }
@@ -78,6 +82,7 @@ export function toHex(
 
   if (typeof mixed === "string") {
     const regex = new RegExp(/^0x[0-9a-fA-F]*$/);
+
     return regex.test(mixed)
       ? mixed
       : addHexPrefix(toBuffer(mixed).toString("hex"));

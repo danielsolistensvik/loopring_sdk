@@ -16,6 +16,8 @@ import * as fm from "../../utils/formatter";
 import { toBig, toHex } from "../../utils/formatter";
 
 import { ChainId, ConnectorNames } from "../../defs/web3_defs";
+import { Buffer } from "buffer";
+
 /**
  * BigNumber -> BigInt
  * BigNumber.from() -> BigInt() or \dn
@@ -81,8 +83,9 @@ export function generatePrivateKey(result: {
   counterFactualInfo: any;
   error: any;
 }) {
-  if (!result.error) {
+  if (!result.error && result.sig) {
     // myLog("sig:", result.sig);
+    // @ts-ignore
     const seedBuff = ethUtil.sha256(fm.toBuffer(result.sig));
     // myLog(`seedBuff.toString('hex') ${seedBuff.toString('hex')}`)
     const seed = BigNumber.from("0x" + seedBuff.toString("hex"));
@@ -148,6 +151,7 @@ export async function generateKeyPair(
     counterFactualInfo,
     isMobile === undefined ? IsMobile.any() : isMobile
   );
+  myLog("result", result);
   try {
     let { keyPair, formatedPx, formatedPy, sk, counterFactualInfo } =
       generatePrivateKey(result);
@@ -708,7 +712,7 @@ export function get_EddsaSig_OffChainWithdraw(
       [
         request.minGas,
         new BN(fm.clearHexPrefix(request.to), 16),
-        ethUtil.toBuffer(request.extraData),
+        new Buffer(request.extraData ?? ""),
       ]
     )
     .slice(0, 20);
@@ -901,7 +905,7 @@ export function get_EddsaSig_NFT_Withdraw(
       [
         request.minGas,
         new BN(fm.clearHexPrefix(request.to), 16),
-        ethUtil.toBuffer(request.extraData),
+        new Buffer(request.extraData ?? ""),
       ]
     )
     .slice(0, 20);
