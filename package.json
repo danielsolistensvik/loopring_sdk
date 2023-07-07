@@ -16,7 +16,6 @@
     "!*.test.ts",
     "!*.test.d.ts"
   ],
-  "type": "module",
   "dependencies": {
     "@ethereumjs/common": "^2.4.0",
     "@ethereumjs/tx": "^3.3.0",
