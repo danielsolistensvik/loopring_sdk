@@ -19,7 +19,7 @@ import { modulo } from './field';
 import { TextEncoder } from "web-encoding";
 
 // @ts-ignore
-var blake2b = require('blake2b')
+import { blake2b } from 'blake2b';
 
 export class PoseidonParams {
   public p: BigNumber;
